@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 
-const FormAddStudent: React.FC = () =>{
+interface FormAddStudentProps {
+    onAdd(title:string): void
+}
+
+const FormAddStudent: React.FC<FormAddStudentProps> = props =>{
 
     const [name, setName] = useState<string>('');
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
+    }
+
+    const keyPressHandler = (event: React.KeyboardEvent) => {
+        if (event.key === 'Enter'){
+            props.onAdd(name)
+            setName('')
+        }
     }
 
     return(
@@ -14,7 +25,10 @@ const FormAddStudent: React.FC = () =>{
                 onChange={changeHandler}
                 value={name}
                 type="text"
-                id="name"/>
+                id="name"
+                placeholder="Введите имя ученика"
+                onKeyPress={keyPressHandler}
+            />
             <label htmlFor="name" >
                 Введите имя ученика 
             </label>
