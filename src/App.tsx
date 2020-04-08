@@ -5,7 +5,7 @@ import ButtonAdd from './components/ButtonAdd';
 
 
 
-const App = () => {
+const App: React.FC = () => {
 
   return (
     <div>
