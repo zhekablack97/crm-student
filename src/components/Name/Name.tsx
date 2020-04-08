@@ -6,11 +6,11 @@ export interface NameProps{
 }
 
 
-const Name = (props: NameProps) => {
-  console.log(props);
+const Name: React.FC = () => {
+  console.log('1');
     return (
       <span>
-        {props.name}
+        
       </span>
     )
 }

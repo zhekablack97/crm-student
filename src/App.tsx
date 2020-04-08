@@ -9,7 +9,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <Name name=""/>
+      <Name/>
       <ButtonAdd/>
     </div>
   );
