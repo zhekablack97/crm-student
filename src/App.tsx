@@ -5,7 +5,6 @@ import Name from './components/Name/';
 
 
 const App = () => {
-  const student = '2';
 
   return (
     <div>
