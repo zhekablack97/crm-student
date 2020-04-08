@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Name from './components/Name/';
+import ButtonAdd from './components/ButtonAdd';
 
 
 
@@ -8,7 +9,8 @@ const App = () => {
 
   return (
     <div>
-      <Name name="hhh"/>
+      <Name name=""/>
+      <ButtonAdd/>
     </div>
   );
 }
