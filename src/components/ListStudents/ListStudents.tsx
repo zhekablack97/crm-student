@@ -1,9 +1,24 @@
 import React from 'react';
+import './ListStudents.css';
 
-const ListStudents: React.FC = () => {
+interface ListStudentsProps{
+    students: any[]
+}
+
+const ListStudents: React.FC<ListStudentsProps> = ({students}) => {
     return(
         <ul>
-            <li></li>
+            {students.map(todo => {
+                return (
+                    <li>
+                        <label htmlFor=""></label>
+                        <span></span>
+                        <i>delete</i>
+                        <input type="checbox"/>
+                    </li>
+                )
+            })}
+            
         </ul>
     )
 }
