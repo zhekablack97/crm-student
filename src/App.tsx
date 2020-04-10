@@ -20,16 +20,26 @@ const App: React.FC = () => {
     }
     setStudents(prev => [newStudent, ...prev])
   }
-  
-  const toggleHandler = (id:number) => {
-    setStudents(prev => prev.map(student => {
-      console.log(student.checkStatus)
+  const toggleStudentStatus = (prev:IStudent[], id:number) => {
+    return prev.map(student => {
+
+      console.log(student.name,'-',student.checkStatus)
+
       if (student.id === id){
-        
         student.checkStatus = !student.checkStatus
       }
+      console.log('---------')
+      console.log(student);
       return student
-    }))
+    }) }
+
+  
+  const toggleHandler = (id:number) => {
+    setStudents(prev => {
+      const result = toggleStudentStatus(prev, id)
+      console.log(result)
+      return result
+    })
   }
   const removeHandler = (id:number) => {
     setStudents(prev => prev.filter(student => student.id !== id ))
