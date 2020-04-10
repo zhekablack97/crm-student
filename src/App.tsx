@@ -20,27 +20,24 @@ const App: React.FC = () => {
     }
     setStudents(prev => [newStudent, ...prev])
   }
-  const toggleStudentStatus = (prev:IStudent[], id:number) => {
-    return prev.map(student => {
-
-      console.log(student.name,'-',student.checkStatus)
-
-      if (student.id === id){
-        student.checkStatus = !student.checkStatus
-      }
-      console.log('---------')
-      console.log(student);
-      return student
-    }) }
+  
 
   
-  const toggleHandler = (id:number) => {
-    setStudents(prev => {
-      const result = toggleStudentStatus(prev, id)
-      console.log(result)
-      return result
-    })
-  }
+    const toggleHandler = (id:number) => {
+      setStudents(prevStudentsState => {
+        const students = prevStudentsState.map(student => {
+          return {
+            ...student,
+            checkStatus: (student.id === id) ? !student.checkStatus : student.checkStatus,
+          };
+        });
+   
+        console.log(students)
+        return students;
+      })
+    }
+
+
   const removeHandler = (id:number) => {
     setStudents(prev => prev.filter(student => student.id !== id ))
   }
@@ -54,7 +51,7 @@ const App: React.FC = () => {
         onAdd={addHandler}/>
       <ListStudents 
         students={students} 
-        onTogle={toggleHandler} 
+        onToggle={toggleHandler} 
         onRemove={removeHandler}/>
     </div>
   );
