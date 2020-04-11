@@ -53,7 +53,6 @@ export const StudentTablPage: React.FC = () => {
 
   return(
     <div>
-      
       <div className="container">
         <ListStudents 
           students={students} 

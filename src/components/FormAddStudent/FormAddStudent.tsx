@@ -18,9 +18,12 @@ const FormAddStudent: React.FC<FormAddStudentProps> = props =>{
     setName(event.target.value)
   }
 
-  const addStudent = () => {
-    onAdd(name)
-    setName('')
+  const addStudent = (event: any) => {
+    if(name){
+      onAdd(name)
+      setName('')
+      onHide()
+    }
   }
 
   return(
@@ -35,15 +38,19 @@ const FormAddStudent: React.FC<FormAddStudentProps> = props =>{
               Введите имя ученика
             </Form.Label>
             <Col sm="9">
-              <Form.Control type="text" placeholder="Иван" onChange={changeHandler} value={name} />
+              <Form.Control required type="text" placeholder="Иван" onChange={changeHandler} value={name} />
+            </Col>
+            <Col sm="12">
+              <Button variant="primary" type="submit" onClick={addStudent}>
+                  Добавить ученика 
+              </Button>
             </Col>
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Добавить ученика 
-          </Button>
+
         </Form>
       </Modal.Body>
       <Modal.Footer>
+        
         <Button onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
