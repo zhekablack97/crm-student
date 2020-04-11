@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FormAddStudent from '../components/FormAddStudent';
 import ListStudents from '../components/ListStudents';
 import { IStudent } from '../interfaces';
-import ButtonAdd from '../components/ButtonAdd';
+import Button from 'react-bootstrap/Button';
 
 export const StudentTablPage: React.FC = () => {
   const [students, setStudents] = useState<IStudent[]>([])
@@ -25,7 +25,10 @@ export const StudentTablPage: React.FC = () => {
   useEffect(() => {
     localStorage.setItem('students', JSON.stringify(students))
   },[students])
-  
+
+  const [modalShow, setModalShow] = useState();
+
+
   const toggleHandler = (id:number) => {
     setStudents(prevStudentsState => {
       const students = prevStudentsState.map(student => {
@@ -40,15 +43,13 @@ export const StudentTablPage: React.FC = () => {
 
 
   const removeHandler = (id:number) => {
-
     const shoudRemove = window.confirm('Вы уверены что хотите удалить данного ученика ?')
-
     if (shoudRemove){
       setStudents(prev => prev.filter(student => student.id !== id ))
     }
-
   }
 
+  
 
   return(
     <div>
@@ -59,10 +60,16 @@ export const StudentTablPage: React.FC = () => {
           onToggle={toggleHandler} 
           onRemove={removeHandler}
           />
-        <ButtonAdd />
+        <Button 
+          variant="primary"
+          onClick={() => setModalShow(true)}
+        >
+          Добавить нового ученика 
+        </Button>
       </div>
-
-      <FormAddStudent 
+      <FormAddStudent
+        show={modalShow}
+        onHide={() => setModalShow(false)}
         onAdd={addHandler}
       />
     </div>

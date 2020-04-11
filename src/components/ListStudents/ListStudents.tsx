@@ -35,12 +35,10 @@ const ListStudents: React.FC<ListStudentsProps> = ({
               <span>{name}</span>
             </label>
             <input type="checkbox" id={String(id)} checked={checkStatus} onChange={() => handleToggle(id)} />
-            <Button />
-            <i onClick={() => onRemove(id)}> delete</i>
+            <Button onClick={() => onRemove(id)}>Удалить ученика</Button>  
           </li>
         )
       })}
-      
     </ul>
   )
 }
