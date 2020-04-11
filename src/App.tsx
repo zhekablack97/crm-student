@@ -31,15 +31,20 @@ const App: React.FC = () => {
             checkStatus: (student.id === id) ? !student.checkStatus : student.checkStatus,
           };
         });
-   
-        console.log(students)
         return students;
       })
     }
 
 
   const removeHandler = (id:number) => {
-    setStudents(prev => prev.filter(student => student.id !== id ))
+
+    const shoudRemove = window.confirm('Вы уверены что хотите удалить данного ученика ?')
+
+    if (shoudRemove){
+      setStudents(prev => prev.filter(student => student.id !== id ))
+    }
+
+    
   }
 
 

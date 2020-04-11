@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactChild } from 'react';
 import './ListStudents.css';
 import { IStudent } from '../../interfaces';
  
@@ -13,9 +13,13 @@ const ListStudents: React.FC<ListStudentsProps> = ({
     onRemove,
     onToggle
 }) => {
-    console.log(students)
+
+    if( students.length === 0){
+        return <p>студентов на данный день нет </p>
+    }
     const handleToggle = (studentId: IStudent['id']) => onToggle(studentId);
  
+
     return(
         <ul>
             {students.map(students => {
@@ -23,15 +27,17 @@ const ListStudents: React.FC<ListStudentsProps> = ({
                 const {name, checkStatus, id} = students
  
                 if(checkStatus){
-                    clasess.push('true')
+                    clasess.push('true-student')
                 }
- 
+                
                 return (
                     <li key={id} className={clasess.join(' ')}>
-                        <label htmlFor=""></label>
-                        <span>{name}</span>
+                        <label htmlFor={String(id)}>
+                            <span>{name}</span>
+                        </label>
+                        
+                        <input type="checkbox" id={String(id)} checked={checkStatus} onChange={() => handleToggle(id)} />
                         <i onClick={() => onRemove(id)}> delete</i>
-                        <input type="checkbox" checked={checkStatus} onChange={() => handleToggle(id)} />
                     </li>
                 )
             })}
