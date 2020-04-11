@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Name from './components/Name/';
 import ButtonAdd from './components/ButtonAdd';
@@ -21,19 +21,26 @@ const App: React.FC = () => {
     setStudents(prev => [newStudent, ...prev])
   }
   
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem('students') || '[]') as IStudent[]
+    setStudents(saved)
+  }, [])
 
+  useEffect(() => {
+    localStorage.setItem('students', JSON.stringify(students))
+  },[students])
   
-    const toggleHandler = (id:number) => {
-      setStudents(prevStudentsState => {
-        const students = prevStudentsState.map(student => {
-          return {
-            ...student,
-            checkStatus: (student.id === id) ? !student.checkStatus : student.checkStatus,
-          };
-        });
-        return students;
-      })
-    }
+  const toggleHandler = (id:number) => {
+    setStudents(prevStudentsState => {
+      const students = prevStudentsState.map(student => {
+        return {
+          ...student,
+          checkStatus: (student.id === id) ? !student.checkStatus : student.checkStatus,
+        };
+      });
+      return students;
+    })
+  }
 
 
   const removeHandler = (id:number) => {
@@ -46,7 +53,6 @@ const App: React.FC = () => {
 
     
   }
-
 
   return (
     <div>

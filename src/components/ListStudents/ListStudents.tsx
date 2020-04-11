@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react';
+import React from 'react';
 import './ListStudents.css';
 import { IStudent } from '../../interfaces';
  
