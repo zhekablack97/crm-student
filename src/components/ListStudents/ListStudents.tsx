@@ -1,5 +1,4 @@
 import React from 'react';
-import './ListStudents.css';
 import { IStudent } from '../../interfaces';
  
 interface ListStudentsProps{
