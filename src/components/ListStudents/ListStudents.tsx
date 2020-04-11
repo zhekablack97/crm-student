@@ -1,6 +1,6 @@
 import React from 'react';
 import { IStudent } from '../../interfaces';
- 
+import * as ReactBootstrap from 'react-bootstrap'
 interface ListStudentsProps{
     students: IStudent[]
     onToggle: (id:number) => void
@@ -16,13 +16,13 @@ const ListStudents: React.FC<ListStudentsProps> = ({
   if( students.length === 0){
       return <p>студентов на данный день нет </p>
   }
+
   const handleToggle = (studentId: IStudent['id']) => onToggle(studentId);
 
-
   return(
-    <ul>
+    <ul className="list-group">
       {students.map(students => {
-        const clasess = ['student']
+        const clasess = ['student','list-group-item']
         const {name, checkStatus, id} = students
 
         if(checkStatus){
@@ -35,6 +35,7 @@ const ListStudents: React.FC<ListStudentsProps> = ({
               <span>{name}</span>
             </label>
             <input type="checkbox" id={String(id)} checked={checkStatus} onChange={() => handleToggle(id)} />
+            <ReactBootstrap.Button />
             <i onClick={() => onRemove(id)}> delete</i>
           </li>
         )

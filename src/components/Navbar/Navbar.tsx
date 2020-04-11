@@ -5,7 +5,7 @@ import './Navbar.sass'
 const Navbar: React.FC = () => {
   return(
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="collapse navbar-collapse">
+      <div className="collapse navbar-collapse container">
         <ul className="navbar-nav">
           <li className="nav-item"><NavLink className="nav-link" to="/">Общая таблица</NavLink></li>
           <li className="nav-item"><NavLink className="nav-link" to="/students">Информация о учениках</NavLink></li>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FormAddStudent from '../components/FormAddStudent';
 import ListStudents from '../components/ListStudents';
 import { IStudent } from '../interfaces';
+import ButtonAdd from '../components/ButtonAdd';
 
 export const StudentTablPage: React.FC = () => {
   const [students, setStudents] = useState<IStudent[]>([])
@@ -51,14 +52,19 @@ export const StudentTablPage: React.FC = () => {
 
   return(
     <div>
+      
+      <div className="container">
+        <ListStudents 
+          students={students} 
+          onToggle={toggleHandler} 
+          onRemove={removeHandler}
+          />
+        <ButtonAdd />
+      </div>
+
       <FormAddStudent 
         onAdd={addHandler}
       />
-      <ListStudents 
-        students={students} 
-        onToggle={toggleHandler} 
-        onRemove={removeHandler}
-        />
     </div>
   )
 }
