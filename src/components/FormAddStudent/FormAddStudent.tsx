@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 interface FormAddStudentProps {
   onAdd(title:string): void
   show: boolean
@@ -15,33 +18,30 @@ const FormAddStudent: React.FC<FormAddStudentProps> = props =>{
     setName(event.target.value)
   }
 
-  const keyPressHandler = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter'){
-      onAdd(name)
-      setName('')
-    }
+  const addStudent = () => {
+    onAdd(name)
+    setName('')
   }
 
-
   return(
-    <Modal show={show} onHide={onHide}>
+    <Modal show={show} onHide={onHide} animation={true} size="lg">
       <Modal.Header closeButton>
-        <Modal.Title>Добавте нового ученика</Modal.Title>
+        <Modal.Title>Добавьте нового ученика</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>
-          <input
-            onChange={changeHandler}
-            value={name}
-            type="text"
-            id="name"
-            placeholder="Введите имя ученика"
-            onKeyPress={keyPressHandler}
-          />
-          <label htmlFor="name" >
-            Введите имя ученика 
-          </label>
-        </div>
+        <Form onSubmit={addStudent}>
+          <Form.Group controlId="formPlaintextName" as={Row}>
+            <Form.Label column sm="3">
+              Введите имя ученика
+            </Form.Label>
+            <Col sm="9">
+              <Form.Control type="text" placeholder="Иван" onChange={changeHandler} value={name} />
+            </Col>
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Добавить ученика 
+          </Button>
+        </Form>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={onHide}>Close</Button>
