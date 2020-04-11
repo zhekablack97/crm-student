@@ -1,8 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import './Navbar.sass'
+import './Nav.sass'
 
-const Navbar: React.FC = () => {
+const Nav: React.FC = () => {
   return(
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="collapse navbar-collapse container">
@@ -14,4 +14,4 @@ const Navbar: React.FC = () => {
     </nav>
   )
 }
-export default Navbar;
+export default Nav;

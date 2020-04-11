@@ -3,14 +3,14 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { StudentTablPage } from './pages/StudentTabl';
 import { StudentPage } from './pages/Students';
-import Navbar from './components/Navbar';
+import Nav from './components/Nav/';
 
 
 const App: React.FC = () => {
   
   return (
     <BrowserRouter>
-    <Navbar />
+    <Nav />
       <Switch>
         <Route component={StudentTablPage} path="/" exact />
         <Route component={StudentPage} path="/students" exact/>

@@ -12,7 +12,7 @@ export const StudentTablPage: React.FC = () => {
     const newStudent: IStudent = {
       name: name,
       id: Date.now(),
-      checkStatus: false
+      checkStatus: false,
     }
     setStudents(prev => [newStudent, ...prev])
   }
@@ -28,7 +28,6 @@ export const StudentTablPage: React.FC = () => {
 
   const [modalShow, setModalShow] = useState();
 
-
   const toggleHandler = (id:number) => {
     setStudents(prevStudentsState => {
       const students = prevStudentsState.map(student => {
@@ -41,15 +40,12 @@ export const StudentTablPage: React.FC = () => {
     })
   }
 
-
   const removeHandler = (id:number) => {
     const shoudRemove = window.confirm('Вы уверены что хотите удалить данного ученика ?')
     if (shoudRemove){
       setStudents(prev => prev.filter(student => student.id !== id ))
     }
   }
-
-  
 
   return(
     <div>
