@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Modal from 'react-bootstrap/Modal'
 interface FormAddStudentProps {
     onAdd(title:string): void
 }
@@ -20,7 +20,11 @@ const FormAddStudent: React.FC<FormAddStudentProps> = props =>{
   }
 
   return(
+
     <div>
+
+
+
       <input
         onChange={changeHandler}
         value={name}

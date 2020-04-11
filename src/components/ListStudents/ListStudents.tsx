@@ -1,6 +1,6 @@
 import React from 'react';
 import { IStudent } from '../../interfaces';
-import * as ReactBootstrap from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 interface ListStudentsProps{
     students: IStudent[]
     onToggle: (id:number) => void
@@ -35,7 +35,7 @@ const ListStudents: React.FC<ListStudentsProps> = ({
               <span>{name}</span>
             </label>
             <input type="checkbox" id={String(id)} checked={checkStatus} onChange={() => handleToggle(id)} />
-            <ReactBootstrap.Button />
+            <Button />
             <i onClick={() => onRemove(id)}> delete</i>
           </li>
         )
