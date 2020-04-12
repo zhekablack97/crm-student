@@ -3,6 +3,9 @@ import FormAddStudent from '../components/FormAddStudent';
 import ListStudents from '../components/ListStudents';
 import { IStudent } from '../interfaces';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 export const StudentTablPage: React.FC = () => {
   const [students, setStudents] = useState<IStudent[]>([])
@@ -50,20 +53,24 @@ export const StudentTablPage: React.FC = () => {
   }
 
   return(
-    <div>
-      <div className="container">
-        <ListStudents 
-          students={students} 
-          onToggle={toggleHandler} 
-          onRemove={removeHandler}
-          />
-        <Button 
+    <div className="students-tabl">
+      <Container>
+        <Row>
+        <Col>
+          <ListStudents 
+            students={students} 
+            onToggle={toggleHandler} 
+            onRemove={removeHandler}
+            />
+          </Col>
+        </Row>
+      </Container>
+      <Button 
           variant="primary"
           onClick={() => setModalShow(true)}
         >
           Добавить нового ученика 
         </Button>
-      </div>
       <FormAddStudent
         show={modalShow}
         onHide={() => setModalShow(false)}
