@@ -8,11 +8,13 @@ export const StudentTablPage: React.FC = () => {
   const [students, setStudents] = useState<IStudent[]>([])
 
   // function add student 
-  const addHandler = (name: string) => {
+  const addHandler = (name: string, price: string) => {
     const newStudent: IStudent = {
       name: name,
       id: Date.now(),
       checkStatus: false,
+      price: price
+
     }
     setStudents(prev => [newStudent, ...prev])
   }
@@ -26,7 +28,7 @@ export const StudentTablPage: React.FC = () => {
     localStorage.setItem('students', JSON.stringify(students))
   },[students])
 
-  const [modalShow, setModalShow] = useState();
+  const [modalShow, setModalShow] = useState<boolean>(Boolean);
 
   const toggleHandler = (id:number) => {
     setStudents(prevStudentsState => {

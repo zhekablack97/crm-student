@@ -2,5 +2,5 @@ export interface IStudent {
     name: string
     id: number
     checkStatus: boolean
-    price?: number
+    price: string
 }
