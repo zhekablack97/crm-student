@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
 interface FormAddStudentProps {
-  onAdd(title:string, price:string): void
+  onAdd(title:string, price:string, target:string): void
   show: boolean
   onHide: () => void
   
@@ -15,7 +15,8 @@ interface FormAddStudentProps {
 const FormAddStudent: React.FC<FormAddStudentProps> = props =>{
   const {onAdd, show, onHide} = props
   const [name, setName] = useState<string>('')
-  const [price, setPrice] = useState<string>()
+  const [price, setPrice] = useState<string>('')
+  const [time, setTime] = useState<string>('')
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value)
@@ -25,11 +26,16 @@ const FormAddStudent: React.FC<FormAddStudentProps> = props =>{
     setPrice(event.target.value)
   }
 
+  const changeHandlerTime = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTime(event.target.value)
+  }
+
   const addStudent = (event: any) => {
     if(name && price){
-      onAdd(name, price)
+      onAdd(name, price, time)
       setName('')
       setPrice('')
+      setTime('')
       onHide()
     }
   }
@@ -55,6 +61,14 @@ const FormAddStudent: React.FC<FormAddStudentProps> = props =>{
             </Form.Label>
             <Col sm="9">
               <Form.Control required type="text" placeholder="1000" onChange={changeHandlerPrice} value={price} />
+            </Col>
+          </Form.Group>
+          <Form.Group controlId="formPlaintextName" as={Row}>
+            <Form.Label column sm="3">
+              Время занятия
+            </Form.Label>
+            <Col sm="9">
+              <Form.Control required type="time" placeholder="10:25" onChange={changeHandlerTime} value={time} />
             </Col>
           </Form.Group>
           <Button variant="primary" type="submit" onClick={addStudent}>

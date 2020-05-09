@@ -14,7 +14,9 @@ interface ListStudentsProps{
     onToggle: (id:number) => void
     onRemove: (id:number) => void
 }
- 
+const sortByTime = (students: any) => {
+  students.sort((a: any, b: any) => a.time > b.time ? 1 : -1)
+}
 const ListStudents: React.FC<ListStudentsProps> = ({
   students,
   onRemove,
@@ -26,12 +28,13 @@ const ListStudents: React.FC<ListStudentsProps> = ({
   }
 
   const handleToggle = (studentId: IStudent['id']) => onToggle(studentId);
-
+  sortByTime(students);
   return(
     <ListGroup as="ul" variant="flush" >
-      {students.map(students => {
+      {
+      students.map(students => {
         const clasess = ['list-student']
-        const {name, checkStatus, id, price} = students
+        const {name, checkStatus, id, price, time} = students
 
         if(checkStatus){
           clasess.push('true-student')
@@ -41,13 +44,19 @@ const ListStudents: React.FC<ListStudentsProps> = ({
           <ListGroup.Item bsPrefix={clasess.join(' ')} as="li" key={id} >
             <Card bsPrefix="list-student-card">
               <Row>
-                <Col xl="10">
+                <Col xl="1" className="d-flex align-items-center">
+                  <Card.Text bsPrefix="list-student-time" as="span">
+                    {time}
+                  </Card.Text>
+                </Col>
+                <Col xl="9">
                   <Card.Title >
                     {name}
                   </Card.Title>
                   <Card.Text bsPrefix="list-student-signature">
                     Цена занятия {price} ₽
                   </Card.Text>
+                  
                 </Col>
                 <Col xl="2">
                   <Button onClick={() => handleToggle(id)}><FontAwesomeIcon icon={faPlus} /></Button>

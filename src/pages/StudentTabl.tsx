@@ -11,12 +11,13 @@ export const StudentTablPage: React.FC = () => {
   const [students, setStudents] = useState<IStudent[]>([])
 
   // function add student 
-  const addHandler = (name: string, price: string) => {
+  const addHandler = (name: string, price: string, time:string) => {
     const newStudent: IStudent = {
       name: name,
       id: Date.now(),
       checkStatus: false,
-      price: price
+      price: price,
+      time: time
 
     }
     setStudents(prev => [newStudent, ...prev])
@@ -56,21 +57,24 @@ export const StudentTablPage: React.FC = () => {
     <div className="students-tabl">
       <Container>
         <Row>
-        <Col>
-          <ListStudents 
-            students={students} 
-            onToggle={toggleHandler} 
-            onRemove={removeHandler}
-            />
+          <Col xs="12">
+            <ListStudents 
+              students={students} 
+              onToggle={toggleHandler} 
+              onRemove={removeHandler}
+              />
+          </Col>
+          <Col>
+            <Button
+              variant="primary"
+              onClick={() => setModalShow(true)}
+            >
+              Добавить нового ученика 
+            </Button>
           </Col>
         </Row>
       </Container>
-      <Button 
-          variant="primary"
-          onClick={() => setModalShow(true)}
-        >
-          Добавить нового ученика 
-        </Button>
+      
       <FormAddStudent
         show={modalShow}
         onHide={() => setModalShow(false)}
