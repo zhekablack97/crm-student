@@ -72,6 +72,9 @@ export const StudentTablPage: React.FC = () => {
               Добавить нового ученика 
             </Button>
           </Col>
+          <Col>
+            
+          </Col>
         </Row>
       </Container>
       

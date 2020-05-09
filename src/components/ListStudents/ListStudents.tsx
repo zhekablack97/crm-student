@@ -44,23 +44,23 @@ const ListStudents: React.FC<ListStudentsProps> = ({
           <ListGroup.Item bsPrefix={clasess.join(' ')} as="li" key={id} >
             <Card bsPrefix="list-student-card">
               <Row>
-                <Col xl="1" className="d-flex align-items-center">
+                <Col xl="1" className="d-flex align-items-center list-student-accent">
                   <Card.Text bsPrefix="list-student-time" as="span">
                     {time}
                   </Card.Text>
                 </Col>
-                <Col xl="9">
-                  <Card.Title >
+                <Col xl="9" className="list-student-information">
+                  <Card.Text className="list-student-name">
                     {name}
-                  </Card.Title>
-                  <Card.Text bsPrefix="list-student-signature">
+                  </Card.Text>
+                  <Card.Text bsPrefix="list-student-signature" as="span">
                     Цена занятия {price} ₽
                   </Card.Text>
                   
                 </Col>
-                <Col xl="2">
-                  <Button onClick={() => handleToggle(id)}><FontAwesomeIcon icon={faPlus} /></Button>
-                  <Button onClick={() => onRemove(id)}><FontAwesomeIcon icon={faUserMinus} /></Button>
+                <Col xl="2" className="d-flex align-items-center justify-content-end">
+                  <Button onClick={() => handleToggle(id)} className="list-student-button"><FontAwesomeIcon icon={faPlus} /></Button>
+                  <Button onClick={() => onRemove(id)} className="list-student-button"><FontAwesomeIcon icon={faUserMinus} /></Button>
                 </Col>
               </Row>
             </Card>
